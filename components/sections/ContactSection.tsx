@@ -28,20 +28,57 @@ export default function ContactSection() {
     { value: '200+', label: 'Mais de 200 funcionários' },
   ];
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const showError = (message: string) => {
+    if (typeof window !== 'undefined' && (window as any).Swal) {
+      (window as any).Swal.fire({
+        title: 'Atenção',
+        text: message,
+        icon: 'warning',
+        confirmButtonText: 'Entendi',
+        confirmButtonColor: '#4E48EB',
+        customClass: {
+          confirmButton: 'btn btn-info btn-swal',
+        },
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.companyName || !formData.privacyPolicy || !captchaValid) {
-      if (typeof window !== 'undefined' && (window as any).Swal) {
-        (window as any).Swal.fire({
-          text: 'Para prosseguir, é necessário preencher todos os campos obrigatórios e estar ciente da nossa Política de Privacidade.',
-          icon: 'error',
-          confirmButtonText: 'Ok',
-          customClass: {
-            confirmButton: 'btn btn-info btn-swal',
-          },
-        });
-      }
+    // Validação customizada com mensagens específicas
+    if (!formData.name || formData.name.trim() === '') {
+      showError('Por favor, preencha o campo "Nome completo".');
+      return;
+    }
+
+    if (!formData.email || formData.email.trim() === '') {
+      showError('Por favor, preencha o campo "Email corporativo".');
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      showError('Por favor, insira um email válido. Exemplo: seu.nome@empresa.com');
+      return;
+    }
+
+    if (!formData.companyName || formData.companyName.trim() === '') {
+      showError('Por favor, preencha o campo "Empresa".');
+      return;
+    }
+
+    if (!formData.privacyPolicy) {
+      showError('É necessário aceitar a Política de Privacidade para continuar.');
+      return;
+    }
+
+    if (!captchaValid) {
+      showError('Por favor, complete a verificação do CAPTCHA.');
       return;
     }
 
@@ -60,9 +97,11 @@ export default function ContactSection() {
 
       if (typeof window !== 'undefined' && (window as any).Swal) {
         (window as any).Swal.fire({
+          title: data.success ? 'Mensagem enviada!' : 'Ops, algo deu errado',
           text: data.message,
           icon: data.success ? 'success' : 'error',
           confirmButtonText: 'Ok',
+          confirmButtonColor: data.success ? '#4E48EB' : '#dc3545',
           customClass: {
             confirmButton: 'btn btn-info btn-swal',
           },
@@ -85,9 +124,11 @@ export default function ContactSection() {
     } catch (error) {
       if (typeof window !== 'undefined' && (window as any).Swal) {
         (window as any).Swal.fire({
-          text: 'Erro ao enviar mensagem. Tente novamente.',
+          title: 'Erro ao enviar',
+          text: 'Não foi possível enviar sua mensagem. Por favor, tente novamente mais tarde.',
           icon: 'error',
           confirmButtonText: 'Ok',
+          confirmButtonColor: '#dc3545',
           customClass: {
             confirmButton: 'btn btn-info btn-swal',
           },
@@ -104,7 +145,7 @@ export default function ContactSection() {
         <h3 className="title">Qual seu desafio?</h3>
         <p>Nos contate.</p>
 
-        <form onSubmit={handleSubmit} className="container mt-5" style={{ marginTop: '3rem' }}>
+        <form onSubmit={handleSubmit} className="container mt-5" style={{ marginTop: '3rem' }} noValidate>
           <div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
             <div className="col-lg-12 mb-3" style={{ width: '100%', marginBottom: '1rem' }}>
               <label className="form-label" style={{ padding: 0 }}>
@@ -116,7 +157,6 @@ export default function ContactSection() {
                 placeholder="Nome completo"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
               />
             </div>
 
@@ -125,12 +165,11 @@ export default function ContactSection() {
                 Email corporativo <span style={{ color: '#dc3545' }}>*</span>
               </label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                placeholder="E-mail"
+                placeholder="seu.nome@empresa.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
               />
             </div>
 
@@ -167,7 +206,6 @@ export default function ContactSection() {
                 placeholder="Nome Fantasia da Empresa"
                 value={formData.companyName}
                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                required
               />
             </div>
 
