@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gobi Consulting - Site React
 
-## Getting Started
+Site institucional da Gobi Consulting desenvolvido em Next.js/React e hospedado na Vercel.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 16** - Framework React
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **Nodemailer** - Envio de e-mails via Gmail SMTP
+- **Vercel** - Hospedagem
+
+## 📋 Pré-requisitos
+
+- Node.js 18+ 
+- npm ou yarn
+- Conta Google Workspace (gobi@gobi.consulting)
+
+## 🔧 Instalação
+
+1. Clone o repositório
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env.local
+```
+
+Edite `.env.local` e adicione suas credenciais do Gmail:
+```
+GMAIL_USER=gobi@gobi.consulting
+GMAIL_APP_PASSWORD=sua_senha_de_app_do_gmail
+```
+
+**Como obter a senha de app do Gmail:**
+1. Acesse: https://myaccount.google.com/apppasswords
+2. Selecione "Email" e "Outro (nome personalizado)"
+3. Digite "Gobi Site" e clique em "Gerar"
+4. Copie a senha gerada (16 caracteres) e cole no `.env.local`
+
+## 🏃 Executar Localmente
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O site estará disponível em `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Deploy na Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Conecte seu repositório GitHub à Vercel
+2. Configure as variáveis de ambiente na Vercel:
+   - `SEND_GRID_API_KEY`
+   - `SEND_GRID_FROM`
+3. Deploy automático a cada push!
 
-## Learn More
+## 📁 Estrutura
 
-To learn more about Next.js, take a look at the following resources:
+```
+gobi-consulting-react/
+├── app/
+│   ├── api/contact/     # API route para formulário
+│   ├── layout.tsx        # Layout principal
+│   ├── page.tsx          # Página inicial
+│   └── globals.css       # Estilos globais
+├── components/
+│   ├── sections/         # Componentes de seções
+│   ├── Captcha.tsx       # Componente CAPTCHA
+│   └── PrivacyModal.tsx  # Modal de privacidade
+└── public/               # Arquivos estáticos
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Componentes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Hero** - Seção hero com vídeo/animação
+- **AboutSection** - Sobre a empresa
+- **ServicesSection** - Serviços oferecidos
+- **ContactSection** - Formulário de contato
+- **CustomersSection** - Logos de parceiros
+- **Footer** - Rodapé com informações
 
-## Deploy on Vercel
+## 📧 Formulário de Contato
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O formulário envia e-mails via Gmail SMTP. Configure as variáveis de ambiente (Gmail App Password) antes de usar.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Domínio Customizado
+
+Configure o domínio `gobi.consulting` na Vercel:
+1. Vá em Settings → Domains
+2. Adicione `gobi.consulting` e `www.gobi.consulting`
+3. Configure os registros DNS conforme instruções da Vercel
+
+## 📝 Licença
+
+Este projeto é propriedade da Gobi Consulting.
