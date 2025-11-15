@@ -47,7 +47,7 @@ export default function ServicesSection() {
         <div className="container">
           <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
             {services.map((service, index) => (
-              <div key={index} className="col-lg-4" style={{ flex: '0 0 calc(33.333333% - 14px)', maxWidth: 'calc(33.333333% - 14px)', minWidth: '300px' }}>
+              <div key={index} className="col-lg-4" style={{ flex: '0 0 calc(33.333333% - 14px)', maxWidth: 'calc(33.333333% - 14px)', minWidth: '300px', width: '100%' }}>
                 <div className="services-card">
                   <div className="services-card-image">
                     <Image

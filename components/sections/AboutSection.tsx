@@ -27,12 +27,12 @@ export default function AboutSection() {
     <section className="about-section">
       <div className="container about-section--first">
         <div className="row about-section--first" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <div className="col-lg-8" style={{ flex: '0 0 66.666667%', maxWidth: '66.666667%' }}>
+          <div className="col-lg-8" style={{ flex: '0 0 66.666667%', maxWidth: '66.666667%', width: '100%' }}>
             <h1>
-              Somos uma consultoria que impulsiona <br /> transformações com estratégia e inovação.
+              Somos uma consultoria que impulsiona <br className="d-none d-md-block" /> transformações com estratégia e inovação.
             </h1>
           </div>
-          <div className="col-lg-4" style={{ flex: '0 0 33.333333%', maxWidth: '33.333333%', position: 'relative' }}>
+          <div className="col-lg-4 d-none d-lg-block" style={{ flex: '0 0 33.333333%', maxWidth: '33.333333%', position: 'relative' }}>
             <img
               src="/images/enfeite_01.png"
               alt="Gobi Consulting"
@@ -45,7 +45,7 @@ export default function AboutSection() {
 
       <div className="container about-section--last">
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <div className="col-lg-6" style={{ flex: '0 0 50%', maxWidth: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="col-lg-6" style={{ flex: '0 0 50%', maxWidth: '50%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <h4>
               Transformar negócios é o que nos move.
               E isso exige <span className="text-color-blue-700">visão, método e execução.</span>
@@ -65,7 +65,7 @@ export default function AboutSection() {
               Fale com um Especialista
             </a>
           </div>
-          <div className="col-lg-6 d-lg-flex" style={{ flex: '0 0 50%', maxWidth: '50%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <div className="col-lg-6 d-none d-lg-flex" style={{ flex: '0 0 50%', maxWidth: '50%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
             <img
               src="/images/logo.gif"
               alt="Uma imagem monocromática de um quadrado com dois círculos."
